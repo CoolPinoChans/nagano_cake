@@ -1,0 +1,2 @@
+class Derivary < ApplicationRecord
+end
