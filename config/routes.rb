@@ -1,14 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-
-
-
-
-
-
-
   namespace :admin do
 
     root to: 'homes#top'
@@ -27,7 +19,12 @@ Rails.application.routes.draw do
   end
 
 
-  namespace :public do
+  scope module: :public do
+
+    devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
      root to: "homes#top"
   get "/home/about" => "homes#about", as: "about"
@@ -45,8 +42,11 @@ Rails.application.routes.draw do
     post 'confirm' => 'orders#confirm'
     get 'thx' => 'orders#thx'
 
-    resources :derivaries, only: [:index, :edit, :create, :update, :destroy]
+    resources :deliveries, only: [:index, :edit, :create, :update, :destroy]
 
   end
+
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
