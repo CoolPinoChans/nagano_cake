@@ -2,7 +2,7 @@
 <h2>管理者ログイン</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <table class="table">
+  <table class="table table-borderless">
     <tr>
       <td><%= f.label :メールアドレス %></td>
       <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
