@@ -5,7 +5,7 @@
 　　<a class="btn btn-outline-primary" href="/customers">マイページ</a>
 　　<a class="btn btn-outline-primary" href="/items">商品一覧</a>
 　　<a class="btn btn-outline-primary" href="/carts">カート</a>
-　　<a class="btn btn-outline-primary" href="/customers/sign_out">ログアウト</a>
+　　<%= link_to "ログアウト", destroy_customer_session_path,method: :delete, class: "btn btn-outline-primary" %>
 　　<% elsif admin_signed_in? %>
 　　<a class="btn btn-outline-primary" href="/admin/items">商品一覧</a>
 　　<a class="btn btn-outline-primary" href="/admin/index">会員一覧</a>
