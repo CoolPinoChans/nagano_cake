@@ -4,33 +4,34 @@
     <div class="mx-auto">
       <%= form_with model: @item, url: admin_items_path do |f| %>
       <table class="table table-borderless">
-        <tr></tr>
+        <tr>
         <th><%= f.label :商品画像 %></th>
-        <td><%= f.file_field :image,accept: "image/*" %></td>
-        <tr></tr>
+        <th><%= f.file_field :image,accept: "image/*" %></th>
+        </tr>
+        <tr>
         <th><%= f.label :商品名 %></th>
-        <td><%= f.text_field :name %></td>
-        <tr></tr>
+        <th><%= f.text_field :name %></th>
+        </tr>
         <th><%= f.label :商品説明 %></th>
-        <td><%= f.text_area :infomation %></td>
-        <tr></tr>
+        <th><%= f.text_area :infomation %></th>
+        <tr>
         <th><%= f.label :税抜価格 %></th>
-        <td><%= f.text_field :price_no_tax %>円</td>
-        <tr></tr>
+        <th><%= f.text_field :price_no_tax %>円</th>
+        </tr>
+        <tr>
         <th><%= f.label :販売ステータス%></th>
-        <td>
+        <th>
         <%= f.radio_button :is_active, true %>
         <%= f.label :販売中 %>
         <%= f.radio_button :is_active, false %>
         <%= f.label :販売停止中 %>
-        </td>
+        </th>
+        </tr>
       </table>
       <p class="text-center">
       <%= f.submit "新規登録", class: "btn btn-success" %>
       </p>
       <% end %>
-      
-
     </div>
   </div>
 </div>
