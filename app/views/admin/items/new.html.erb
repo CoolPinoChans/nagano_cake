@@ -15,7 +15,7 @@
         <td><%= f.text_area :infomation %></td>
         <tr></tr>
         <th><%= f.label :税抜価格 %></th>
-        <td><%= f.text_area :price_no_tax %>円</td>
+        <td><%= f.text_field :price_no_tax %>円</td>
         <tr></tr>
         <th><%= f.label :販売ステータス%></th>
         <td>
@@ -24,12 +24,12 @@
         <%= f.radio_button :is_active, false %>
         <%= f.label :販売停止中 %>
         </td>
-
       </table>
       <p class="text-center">
       <%= f.submit "新規登録", class: "btn btn-success" %>
-      <% end %>
       </p>
+      <% end %>
+      
 
     </div>
   </div>

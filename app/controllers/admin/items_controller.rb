@@ -1,9 +1,10 @@
 class Admin::ItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def new
-    @item = Item.new(item_params)
+    @item = Item.new
   end
 
   def edit
@@ -17,7 +18,7 @@ class Admin::ItemsController < ApplicationController
     if @item.save
     redirect_to admin_item_path(@item)
     else
-    render edit
+    render new
     end
   end
 
@@ -28,7 +29,7 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.permit(:name,:infomation,:image,:pice_no_tax)
+    params.require(:item).permit(:name,:infomation,:image,:price_no_tax,:is_active)
   end
 
 end
