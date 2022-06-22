@@ -1,32 +1,41 @@
-<h3>マイページ</h3>
-<h3>登録情報</h3>
+<div class="container">
+  <div class="row">
 
-<table>
-  <tr><th>氏名</th></tr>
-  <tr><td></td></tr>
-  
-  <tr><th>カナ</th></tr>
-  <tr><td></td></tr>
-  
-  <tr><th>郵便番号</th></tr>
-  <tr><td></td></tr>
-  
-  <tr><th>住所</th></tr>
-  <tr><td></td></tr>
-  
-  <tr><th>電話番号</th></tr>
-  <tr><td></td></tr>
-  
-  <tr><th>メールアドレス</th></tr>
-  <tr><td></td></tr>
-  
-</table>
+     <h3>マイページ</h3>
+        <h4>登録情報</h4>
+
+        <table>
+          <tr><th>氏名</th></tr>
+          <tr><td><%= @customer.full_name %></td></tr>
+
+          <tr><th>カナ</th></tr>
+          <tr><td><%= @customer.full_name_kana %></td></tr>
+
+          <tr><th>郵便番号</th></tr>
+          <tr><td><%= @customer.post_code %></td></tr>
+
+          <tr><th>住所</th></tr>
+          <tr><td><%= @customer.address %></td></tr>
+
+          <tr><th>電話番号</th></tr>
+          <tr><td><%= @customer.phone_number %></td></tr>
+
+          <tr><th>メールアドレス</th></tr>
+          <tr><td><%= @customer.email %></td></tr>
+
+        </table>
 
 
 
-<P>配送先</P>
-<btn></btn>
+        <P>配送先</P>
+        <%= link_to deliveries_path do %>
+          <btn class="btn btn-primary">一覧を見る</btn>
+        <% end %>
 
-<p>注文履歴</p>
-<btn></btn>
+        <p>注文履歴</p>
+        <%= link_to orders_path(current_customer.id) do %>
+          <btn class="btn btn-primary">一覧を見る</btn>
+        <% end %>
 
+  </div>
+</div>
