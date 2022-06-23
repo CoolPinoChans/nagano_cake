@@ -40,10 +40,6 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     resources :carts, only: [:index, :update, :destroy, :create]
-      scope module: :products do
-        resources :add_to_carts, only: [:create]
-      resources :delete_in_carts, only: [:create]
-      end
       delete 'destroy_all' => 'carts#destroy_all'
 
     resources :orders, only:[:index, :new, :show, :create]
