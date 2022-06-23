@@ -5,8 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-
- has_many :deliveries,dependent: :destroy
+ has_many :carts, dependent: :destroy
+ has_many :deliveries, dependent: :destroy
 
 
   def full_name

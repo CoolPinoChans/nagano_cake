@@ -1,9 +1,9 @@
-<%= @items.each do |item| %>
+    <h1><%= @item.name %></h1>
+    <p><%= @item.infomation %></p>
+    <h2>¥<%= @item.with_tax_price %></h2><p>(税込)</p>
 
-<h1><%= item.name %></h1>
-<p><%= item.infomation %></p>
-<h2>¥<%= item.with_tax_price %></h2><p>(税込)</p>
-
-<%= f.select :amount, *[1..10] %> <%= link_to 'カートに入れる', cart_items %>
-
-<%= image_tag list.image, size: "200x200" %>
+<%= form_with model: @cart_item, url: carts_path, method: :post do |f| %>    
+    <%= f.select :quantity, *[1..10] %>
+    <%= f.submit 'カートに入れる',class: "btn" %>
+    
+<% end %>
