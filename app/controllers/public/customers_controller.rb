@@ -1,5 +1,7 @@
 class Public::CustomersController < ApplicationController
 
+  before_action :authenticate_customer!
+
 
   def show
     @customer = current_customer
@@ -11,15 +13,15 @@ class Public::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(current_customer.id)
-    if @customer.update(customer_params)
-      redirect_to customer_path(@customer)
-    else
-      redirect_to request.referer
-    end
+    @customer.update(customer_params)
+      redirect_to customers_information_path
   end
 
   def unsubscribe
-
+    @customer = current_customer
+     @customer.update(is_deleted: true)
+     reset_session
+     redirect_to root_path
   end
 
 
@@ -28,7 +30,7 @@ class Public::CustomersController < ApplicationController
 
 
   def customer_params
-    params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:full_name_kana,:email,:address,:post_code,:phone_number)
+    params.require(:customer).permit(:last_name,:first_name,:last_name_kana,:first_name_kana,:email,:address,:post_code,:phone_number,:is_deleted)
   end
 
 end

@@ -33,12 +33,13 @@ Rails.application.routes.draw do
      root to: "homes#top"
   get "/home/about" => "homes#about", as: "about"
 
-    resources  :customers, only: [:show, :edit, :update]
 
-    get 'customers' => 'customers#show'
-    get 'customers/edit' => 'customers#edit'
-    patch 'customers/update' => 'customers#update'
-    patch 'unsubscribe' => 'customers#unsubscribe'
+
+    get 'customers/information' => 'customers#show'
+    get 'customers/information/edit' => 'customers#edit'
+    patch 'customers/information' => 'customers#update'
+
+    patch 'unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     get 'unsubscribe_check' => 'customers#unsubscribe_check'
 
     resources :items, only: [:index, :show]
