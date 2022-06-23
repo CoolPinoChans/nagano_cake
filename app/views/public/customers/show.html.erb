@@ -4,6 +4,10 @@
      <h3>マイページ</h3>
         <h4>登録情報</h4>
 
+        <%= link_to edit_customer_path(@customer) do %>
+          <btn class="btn btn-success">編集する</btn>
+        <% end %>
+
         <table>
           <tr><th>氏名</th></tr>
           <tr><td><%= @customer.full_name %></td></tr>

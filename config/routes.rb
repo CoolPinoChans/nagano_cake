@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   get "/home/about" => "homes#about", as: "about"
 
     resources  :customers, only: [:show, :edit, :update]
+
+    get 'customers' => 'customers#show'
+    get 'customers/edit' => 'customers#edit'
+    patch 'customers/update' => 'customers#update'
     patch 'unsubscribe' => 'customers#unsubscribe'
     get 'unsubscribe_check' => 'customers#unsubscribe_check'
 
