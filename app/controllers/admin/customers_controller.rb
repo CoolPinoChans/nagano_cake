@@ -4,8 +4,13 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
+    @customer = current_customer
   end
 
   def index
+  end
+
+  def update
+
   end
 end
