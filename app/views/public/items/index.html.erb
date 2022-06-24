@@ -1,11 +1,16 @@
 <h1>商品一覧画面</h1>
 
 <% @items.each do |item| %>
-  <%#= image_tag item.get_image(50,50) %>
+<%= link_to item_path(item) do%>
+  <% if item.image.attached? %>
+    <%= image_tag item.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
   <%= item.name %>
-  <!--<div class="with_tax_price">¥-->
-  <!--  <%#= item.with_tax_price %>-->
-  <!--</div>-->
 <% end %>
-
-
+  <%= item.infomation %>
+  <div class="aa">¥
+    <%= item.price_no_tax %>
+  </div>
+<% end %>
