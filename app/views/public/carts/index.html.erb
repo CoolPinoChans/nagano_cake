@@ -9,11 +9,12 @@
     </tr>
     <tr>
         <% @cart_items.each do |cart_item| %>
-            <%= form_with model: cart_item, url: root_path do |f| %>
+            <%= form_with model: cart_item do |f| %>
                 <td><%= cart_item.item.name %></td>
                 <td><%= cart_item.item.with_tax_price %></td>
                 <td><%= f.select :quantity, *[1..10] %><%= f.submit '変更' %></td>
                 <td><%= cart_item.subtotal %></td>
+                <td><%= button_to "削除", carts_path, method: :delete %></td>
                 <%= @price_all += cart_item.item.with_tax_price * cart_item.quantity %>
             <% end %>
         <% end %>
