@@ -1,14 +1,20 @@
 class Public::CartsController < ApplicationController
+  protect_from_forgery
   def index
     @cart_items = current_customer.carts
     @price_all = 0
   end
 
   def update
-    
+    cart_item = Cart.find(params[:id])
+    cart_item.update(cart_item_params)
+    redirect_to carts_path
   end
 
   def destroy
+    cart_item = Cart.find(params[:id])
+    cart_item.destroy
+    redirect_to carts_path
   end
 
   def destroy_all
@@ -26,10 +32,10 @@ class Public::CartsController < ApplicationController
       new_amount = @cart_items.amount + @cart_item.amount
       @cart_items.update_attribute(:quantity, new_amount)
       @cart_item.delete
-      redirect_to '/carts'
+      redirect_to carts_path
     else
-      @cart_item.save!
-      redirect_to '/carts'
+      @cart_item.save
+      redirect_to carts_path
     end
   end
   
