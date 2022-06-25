@@ -19,7 +19,7 @@
             <th><%= item.id %></th>
             <th><%= link_to item.name, admin_item_path(item) %></th>
             <th><%= item.price_no_tax %>円</th>
-            <!--<th><#%= item.genre.name %></th>-->
+            <th><%= item.genre.name %></th>
             <th>
               <% if item.is_active? == true %>
               <span>販売中</span>
