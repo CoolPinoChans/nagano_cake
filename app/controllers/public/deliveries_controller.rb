@@ -9,7 +9,7 @@ class Public::DeliveriesController < ApplicationController
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
     @delivery.save
-    redirect_to deliveries_path
+  　redirect_to deliveries_path
   end
 
   def edit
