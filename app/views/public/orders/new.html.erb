@@ -7,16 +7,16 @@
       <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
       <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
 <h2>お届け先</h2>
-      <%= f.radio_button :select_address, 0 %>
-      <%= f.label :select_address, @select_addresses[0] %>
+      <%= f.radio_button :address_all, :my_address %>
+      <%= f.label :address_all, "ご自身の住所" %>
       <%= current_customer.full_address %>
       
-      <%= f.radio_button :select_address, 1 %>
-      <%= f.label :select_address, @select_addresses[1] %>
+      <%= f.radio_button :address_all, :address_index %>
+      <%= f.label :address_all, "登録済住所から選択" %>
       <%= f.select :delivery_id, options_from_collection_for_select(Delivery.all, :id, :address_all) %>
       
-      <%= f.radio_button :select_address, 2 %>
-          <%= f.label :select_address, @select_addresses[2] %>
+      <%= f.radio_button :address_all, :address_new %>
+          <%= f.label :address_all, "新しいお届け先" %>
               <table>
                   <tr>
                       <td>郵便番号(ハイフンなし)</td>
