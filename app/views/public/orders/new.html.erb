@@ -10,11 +10,11 @@
       <%= f.radio_button :select_address, 0 %>
       <%= f.label :select_address, @select_addresses[0] %>
       <%= current_customer.full_address %>
-
+      
       <%= f.radio_button :select_address, 1 %>
       <%= f.label :select_address, @select_addresses[1] %>
       <%= f.select :delivery_id, options_from_collection_for_select(Delivery.all, :id, :address_all) %>
-
+      
       <%= f.radio_button :select_address, 2 %>
           <%= f.label :select_address, @select_addresses[2] %>
               <table>
