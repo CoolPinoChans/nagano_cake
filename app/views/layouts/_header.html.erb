@@ -2,6 +2,7 @@
   <h3 class="my-0 mr-md-auto font-weight-normal">LOGO</h3>
   <nav class="my-2 my-md-0 md-3">
     <% if customer_signed_in? %>
+    ようこそ<%= current_customer.full_name %>さん！
 　　<%= link_to "マイページ", customers_information_path, class: "btn btn-outline-primary" %>
 　　<%= link_to "商品一覧", items_path, class: "btn btn-outline-primary" %>
 　　<%= link_to "カート", carts_path, class: "btn btn-outline-primary" %>
@@ -11,8 +12,8 @@
 　　<%= link_to "会員一覧", admin_customers_path, class: "btn btn-outline-primary" %>
 　　<%= link_to "注文履歴一覧", admin_root_path, class: "btn btn-outline-primary" %>
 　　<%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-primary" %>
-　　<%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-outline-primary" %>
-　　<% else %>
+　　<%= link_to "ログアウト", destroy_admin_session_path,method: :delete, class: "btn btn-outline-primary" %>
+　　<% else %>          
 　　<%= link_to "About", about_path, class: "btn btn-outline-primary" %>
 　　<%= link_to "商品一覧", items_path, class: "btn btn-outline-primary" %>
 　　<%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-primary" %>
@@ -25,3 +26,5 @@
 　　<% end %>
   </nav>
 </div>
+
+

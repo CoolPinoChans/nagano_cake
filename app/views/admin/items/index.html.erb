@@ -12,12 +12,11 @@
             <th>商品名</th>
             <th>税抜価格</th>
             <th>ジャンル</th>
-            <th></th>
             <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
-          <% @items.each do |item| %>
+          <% @itempage.each do |item| %>
           <tr>
             <th><%= item.id %></th>
             <th><%= link_to item.name, admin_item_path(item) %></th>
@@ -25,13 +24,14 @@
             <th><%= item.genre.name %></th>
             <th>
               <% if item.is_active? == true %>
-              <span>販売中</span>
+              <span class="text-success">販売中</span>
               <% else %>
-              <span>販売停止中</span>
+              <span class="text-danger">販売停止中</span>
               <% end %>
             </th>
           </tr>
           <% end %>
+          <th><%= paginate @itempage %></th>
         </tbody>
       </table>
     </div>

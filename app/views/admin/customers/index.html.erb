@@ -12,7 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @customer.each do |customer| %>
+          <% @customers.each do |customer| %>
           <tr>
             <th><%= customer.id %></th>
             <th><%= link_to customer.full_name, admin_customer_path(customer) %></th>
@@ -24,6 +24,7 @@
             <% end %>
           </tr>
           <% end %>
+          <th><%= paginate @customers %></th>
         </tbody>
       </table>
     </div>
