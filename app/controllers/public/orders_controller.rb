@@ -8,6 +8,7 @@ class Public::OrdersController < ApplicationController
   def index
   end
 
+
   def confirm
     @order = Order.new(order_params)
     
@@ -53,6 +54,7 @@ class Public::OrdersController < ApplicationController
       order_detail.save
     end
     redirect_to thx_path
+
   end
 
   def thx

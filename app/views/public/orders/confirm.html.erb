@@ -18,6 +18,7 @@
 <table>
     <tr>
         <td>送料</td>
+
         <td><%= @order.postage %></td>
     </tr>
     <tr>
@@ -40,7 +41,7 @@
             <%= f.hidden_field @order, value: @order.name %>
             <%= f.hidden_field @order, value: @order.postage %>
             <%= f.hidden_field @order, value: @order.billing_amount %>
-            <%= f.submit "注文を確定する" %>
+            <%= f.submit "注文を確定する" %
         <% end %>
     </tr>
 </table>
