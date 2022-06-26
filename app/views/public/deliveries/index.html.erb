@@ -6,12 +6,24 @@
         <th>郵便番号</th>
         <th>住所</th>
         <th>宛名</th>
+        <th></th>
     </tr>
-    <% current_customer.@deliveries.each do |delivery| %>
+    <% current_customer.deliveries.each do |delivery| %>
     <tr>
         <td><%= delivery.post_code %></td>
         <td><%= delivery.address %></td>
         <td><%= delivery.name %></td>
+        <td>
+          <%= link_to edit_delivery_path(delivery.id), model: delivery do %>
+            <btn class="btn btn-success">編集する</btn>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to delivery_path(delivery.id), model: delivery,method: :delete do %>
+            <btn class="btn btn-danger">削除する</btn>
+          <% end %>
+        </td>
+
     </tr>
     <% end %>
 </table>
