@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 
   validates :image, presence: true
   validates :name, presence: true
-  validates :information, presence: true,lengh{maximum: 200}
+  validates :infomation, presence: true
 
   def with_tax_price
       (price_no_tax * 1.1).floor
