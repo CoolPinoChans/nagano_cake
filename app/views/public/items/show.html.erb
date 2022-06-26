@@ -8,9 +8,9 @@
     <p><%= @item.infomation %></p>
     <h2>¥<%= @item.with_tax_price %></h2><p>(税込)</p>
 
-<%= form_with model: @cart_item, url: carts_path, method: :post do |f| %>    
+<%= form_with model: @cart_item, url: carts_path, method: :post do |f| %>
     <%= f.hidden_field :item_id, value: @item.id %>
     <%= f.select :quantity, *[1..10] %>
     <%= f.submit 'カートに入れる',class: "btn" %>
-    
+
 <% end %>
