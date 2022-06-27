@@ -33,7 +33,7 @@
         <%= @payment_method_display %>
     <h2>お届け先</h2>
         <%= @order.post_code %>
-        
+
         <%= form_with model: @order, method: :post do |f| %>
             <%= f.hidden_field :payment_method, value: @order.payment_method %>
             <%= f.hidden_field :post_code, value: @order.post_code %>
@@ -41,6 +41,7 @@
             <%= f.hidden_field :name, value: @order.name %>
             <%= f.hidden_field :postage, value: @order.postage %>
             <%= f.hidden_field :billing_amount, value: @order.billing_amount %>
+            <%= f.hidden_field :customer_id, value: current_customer.id %>
             <%= f.submit "注文を確定する" %>
         <% end %>
     </tr>
