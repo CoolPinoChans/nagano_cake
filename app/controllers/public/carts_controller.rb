@@ -18,7 +18,6 @@ class Public::CartsController < ApplicationController
   end
 
   def destroy_all
-
   end
 
   def create

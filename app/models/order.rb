@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
     belongs_to :customer
-    has_many :order_detail
+    has_many :order_details
 
     validates :post_code ,presence: true
     validates :address ,presence: true
