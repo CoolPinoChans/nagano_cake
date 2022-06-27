@@ -75,6 +75,7 @@ class Public::OrdersController < ApplicationController
       order_detail.quantity = cart.quantity
       order_detail.tax_in_price = cart.item.with_tax_price
       order_detail.save
+      cart.destroy
     end
     redirect_to thx_path
 

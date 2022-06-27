@@ -39,3 +39,19 @@
     </tr>
 </table>
 <p>注文内容</p>
+<table>
+    <tr>
+        <th>商品</th>
+        <th>単価(税込)</th>
+        <th>個数</th>
+        <th>小計</th>
+    </tr>
+    <tr>
+        <% @order_history.order_details.each do |order_detail| %>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.tax_in_price %></td>
+        <td><%= order_detail.quantity %></td>
+        <td><%= order_detail.subtotal_order %></td>
+        <% end %>
+    </tr>
+</table>
