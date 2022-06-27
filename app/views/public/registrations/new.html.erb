@@ -75,12 +75,14 @@
         </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
 
-
+<h5>既に登録済みの方</h5>
+  <div class="log_in_link">
+      <%= render "public/shared/links" %>からログインしてください。
+  </div>
 
 </div>

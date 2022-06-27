@@ -6,6 +6,29 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @order_historys = Order.all
+    @order_history_details = OrderDetail.all
+    
+    #
+    
+    #if params[:order][:payment_method] == "credit_card"
+      #@order_status = Order.payment_methods_i18n[:credit_card]
+    #elsif params[:order][:payment_method] == "transfer"
+      #@order_status = Order.payment_methods_i18n[:transfer]
+    #end
+    
+  end
+  
+  def show
+    @order_history = Order.find(params[:id])
+    
+    if @order_history.payment_method.to_i == 0
+      @order_history_paiment_method_display = Order.payment_methods_i18n[:credit_card]
+    elsif @order_history.payment_method.to_i == 1
+      @order_history_paiment_method_display = Order.payment_methods_i18n[:transfer]
+    end
+    
+    @all_cart_price = @order_history.billing_amount.to_i - @order_history.postage.to_i
   end
 
 
@@ -43,6 +66,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
     @order.save
     current_customer.carts.each do |cart|
       order_detail = @order.order_details.new
@@ -50,6 +74,7 @@ class Public::OrdersController < ApplicationController
       order_detail.quantity = cart.quantity
       order_detail.tax_in_price = cart.item.with_tax_price
       order_detail.save
+      cart.destroy
     end
     redirect_to thx_path
 
@@ -60,10 +85,14 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
+
     params.require(:order).permit(:customer_id,:billing_amount,:postage,:payment_method, :post_code, :address, :name)
+
   end
 
   def order_details_params
     params.require(:order_details).permit(:quantity, :tax_in_price)
   end
+
 end
+
