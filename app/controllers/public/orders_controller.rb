@@ -8,15 +8,6 @@ class Public::OrdersController < ApplicationController
   def index
     @order_historys = Order.all
     @order_history_details = OrderDetail.all
-    
-    #
-    
-    #if params[:order][:payment_method] == "credit_card"
-      #@order_status = Order.payment_methods_i18n[:credit_card]
-    #elsif params[:order][:payment_method] == "transfer"
-      #@order_status = Order.payment_methods_i18n[:transfer]
-    #end
-    
   end
   
   def show
@@ -29,6 +20,18 @@ class Public::OrdersController < ApplicationController
     end
     
     @all_cart_price = @order_history.billing_amount.to_i - @order_history.postage.to_i
+    
+    if @order_history.order_status.to_i == 0
+      @order_status = Order.order_statuses_i18n[:payment_waiting]
+    elsif @order_history.order_status.to_i == 1
+      @order_status = Order.order_statuses_i18n[:payment_finish]
+    elsif @order_history.order_status.to_i == 2
+      @order_status = Order.order_statuses_i18n[:production]
+    elsif @order_history.order_status.to_i == 3
+      @order_status = Order.order_statuses_i18n[:ready_delivery]
+    elsif @order_history.order_status.to_i == 4
+      @order_status = Order.order_statuses_i18n[:delivery_finish]
+    end
   end
 
 
@@ -85,7 +88,6 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-
     params.require(:order).permit(:customer_id,:billing_amount,:postage,:payment_method, :post_code, :address, :name)
 
   end
