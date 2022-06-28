@@ -1,18 +1,24 @@
-<h1>商品一覧画面</h1>
-
-<% @items.each do |item| %>
-<%= link_to item_path(item) do%>
-  <% if item.image.attached? %>
-    <%= image_tag item.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-  <%= item.name %>
-<% end %>
-  <%= item.infomation %>
-  <div class="aa">¥
-    <%= item.price_no_tax %>
-  </div>
-<% end %>
-<%= paginate @items %>
-
+<div class="container">
+    <div class="row">
+      <h1>商品一覧画面</h1>
+    </div>
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="col-md-3">
+          <%= link_to item_path(item) do%>
+            <% if item.image.attached? %>
+              <%= image_tag item.image, size: "200x150" %><br>
+            <% else %>
+              <%= image_tag 'no_image', size: "200x150" %><br>
+            <% end %>
+            <%= item.name %>
+          <% end %>
+            <%= item.infomation %>
+            <div class="aa">¥
+              <%= item.price_no_tax %>
+            </div>
+        </div>
+      <% end %>
+      <%= paginate @items %>
+    </div>
+</div>
