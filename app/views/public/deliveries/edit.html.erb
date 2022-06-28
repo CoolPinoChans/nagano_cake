@@ -2,7 +2,7 @@
   <div class="row">
     <h1>配送先編集</h1>
   </div>
-  
+
   <div class="row">
     <%= form_with model: @delivery, url: delivery_path(@delivery.id), method: :patch do |f| %>
     <table>
@@ -10,12 +10,12 @@
       <th><%= f.label :郵便番号 %></th>
       <td><%= f.text_field :post_code %></td>
      </tr>
-     
+
      <tr>
        <th><%= f.label :住所 %></th>
        <td><%= f.text_field :address %></td>
      </tr>
-    
+
      <tr>
        <th><%= f.label :名前 %></th>
        <td><%= f.text_field :name %></td>
@@ -23,7 +23,7 @@
      </tr>
     </table>
     <% end %>
-  
+
   </div>
- 
+
  </div>
