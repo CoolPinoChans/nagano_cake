@@ -6,20 +6,20 @@ class Public::CartsController < ApplicationController
   end
 
   def update
-    cart_item = Cart.find(params[:id])
-    cart_item.update(cart_item_params)
+    @cart_item = Cart.find(params[:id])
+    @cart_item.update(cart_item_params)
     redirect_to carts_path
   end
 
   def destroy
-    cart_item = Cart.find(params[:id])
-    cart_item.destroy
+    @cart_item = Cart.find(params[:id])
+    @cart_item.destroy
     redirect_to carts_path
   end
 
   def destroy_all
-    cart_items = current_customer.carts.all
-    cart_items.destroy_all
+    @cart_items = current_customer.carts.all
+    @cart_items.destroy_all
     redirect_to carts_path
   end
 
