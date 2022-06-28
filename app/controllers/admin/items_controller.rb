@@ -1,14 +1,16 @@
 class Admin::ItemsController < ApplicationController
   def index
-    @items = Item.all
+    @itempage = Item.page(params[:page]).per(10)
   end
 
   def new
     @item = Item.new
+    @genres = Genre.all
   end
 
   def edit
     @item = Item.find(params[:id])
+    @genres = Genre.all
   end
 
   def show
@@ -18,9 +20,14 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-    redirect_to admin_item_path(@item)
+      redirect_to admin_item_path(@item)
     else
-    render new
+      @item.errors.full_messages.each  do| msg |
+        pp msg
+      end
+
+      @genres = Genre.all
+      render :new
     end
   end
 
@@ -29,14 +36,16 @@ class Admin::ItemsController < ApplicationController
     if @item.update(item_params)
     redirect_to admin_item_path(@item)
     else
-    render edit
+    @genres = Genre.all
+    render :edit
     end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name,:infomation,:image,:price_no_tax,:is_active)
+    params.require(:item).permit(:genre_id,:name,:infomation,:image,:price_no_tax,:is_active)
   end
 
 end
+

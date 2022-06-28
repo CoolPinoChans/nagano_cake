@@ -1,2 +1,82 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <div class="row mt-4 ml-4">
+    <h3>注文履歴詳細</h3>
+    <div class="row mt-2">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <th>購入者</th>
+            <th>
+              <%= @order.customer.full_name %>
+            </th>
+          </tr>
+          <tr>
+            <th>注文日</th>
+            <th><%= @order.created_at.strftime("%Y/%m/%d") %></th>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <th><%= @order.post_code %></th>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <th><%= @order.payment_method %></th>
+          </tr>
+          <tr>
+            <th>注文ステータス</th>
+            <th>
+              <%= form_with model: @order, url: admin_order_path(@order),method: :patch do |f| %>
+              <%= f.select :order_status,Order.order_statuses_i18n.values.to_a.zip(Order.order_statuses.keys.to_a) %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+              <% end %>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+          <tr>
+            <th><%= order_detail.item.name %></th>
+            <th><%= order_detail.tax_in_price %></th>
+            <th><%= order_detail.quantity %></th>
+            <th><%= order_detail.tax_in_price*order_detail.quantity %></th>
+            <% @sum += order_detail.tax_in_price*order_detail.quantity %>
+            <th>
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail),method: :patch do |f| %>
+              <%= f.select :production_status, OrderDetail.production_statuses_i18n.values.to_a.zip(OrderDetail.production_statuses_i18n.keys.to_a) %>
+              <%= f.submit "更新", class: "btn btn-success" %>
+              <% end %>
+            </th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="col d-flex">
+        <table class="table table-borderless">
+          <tr>
+            <th>商品合計</th>
+            <th><%= @sum %>円</th>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <th><%= @postage %>円</th>
+          </tr>
+          <tr>
+            <th>請求金額合計</th>
+            <th><%= @sum + @postage %>円</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
