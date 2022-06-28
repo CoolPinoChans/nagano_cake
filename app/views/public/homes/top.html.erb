@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="text-center" style="background-image: url(https://sozaino.site/wp-content/uploads/2021/02/aozora.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+  <div class="text-center" style="background-image: url(); background-position: center center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
     <p>ようこそながのCAKEへ！</p><br>
     <p>このサイトはケーキ販売のECサイトになります。</p><br>
     <p>会員でない方も商品の閲覧はできますが、</p><br>
@@ -12,9 +12,9 @@
     <% @items.each do |item| %>
         <%= link_to item_path(item) do %>
         <% if item.image.attached? %>
-          <%= image_tag item.image, size: "100x100" %>
+          <%= image_tag item.image, size: "90x75" %>
         <% else %>
-          <%= image_tag 'no_image', size: "100x100" %>
+          <%= image_tag 'no_image', size: "90x75" %>
         <% end %>
       　<% end %>
       <%= item.name %><br>
