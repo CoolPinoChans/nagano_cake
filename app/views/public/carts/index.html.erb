@@ -1,7 +1,7 @@
 <div class="container">
     
     <div class="row" >
-        <h1 class="col-md-9" >ショッピングカート</h1>
+        <h3 class="col-md-9" >ショッピングカート</h3>
         <%= link_to destroy_all_path, method: :delete do %>
             <btn class="btn btn-danger">カートを空にする</btn>
         <% end %>
@@ -20,9 +20,9 @@
                     <%= form_with model: cart_item do |f| %>
                         <td><%= cart_item.item.name %></td>
                         <td><%= cart_item.item.with_tax_price %></td>
-                        <td><%= f.select :quantity, *[1..10] %><%= f.submit '変更' %></td>
+                        <td><%= f.select :quantity, *[1..10] %><%= f.submit '変更', class: "btn btn-success"  %></td>
                         <td><%= cart_item.subtotal %></td>
-                        <td><%= button_to "削除", carts_path, method: :delete %></td>
+                        <td><%= link_to "削除する", carts_path, method: :delete,class: "btn btn-danger" %></td>
             </tr>
         </table>
         <table class="table table-bordered col-md-2">
